@@ -37,6 +37,7 @@ FarmTech Vision Lab
 - Três experimentos controlados (YOLOv5s 30 épocas, YOLOv5s 60 épocas, YOLOv5m 60 épocas) quantificam o trade-off entre acurácia e custo computacional.
 - Gráficos comparativos, tabela executiva e análise textual evidenciam a superioridade do modelo `YOLOv5m` e os impactos de governança de dados e deploy em edge.
 - Discussão aprofundada sobre limitações de bounding boxes para objetos de geometria complexa e roadmap para evoluir o projeto (segmentação, hiperparâmetros, compressão).
+- Documentação integrada: relatório executivo em [`docs/report.md`](docs/report.md) e pipeline completo no notebook [`notebooks/YanPimentelCotta_RM562836_fase6_cap1.ipynb`](notebooks/YanPimentelCotta_RM562836_fase6_cap1.ipynb).
 
 - Vídeo explicativo (YouTube não listado): **adicionar link após publicação**
 
@@ -48,9 +49,9 @@ FarmTech Vision Lab
 
 ## 📁 Estrutura de pastas
 
-- `docs/orientation.md`: enunciado oficial e checklist dos requisitos.
-- `docs/report.md`: relatório executivo, metodologia e recomendações estratégicas.
-- `notebooks/YanPimentelCotta_RM562836_fase6_cap1.ipynb`: notebook Colab com pipeline end-to-end.
+- [`docs/orientation.md`](docs/orientation.md): enunciado oficial e checklist dos requisitos.
+- [`docs/report.md`](docs/report.md): relatório executivo, metodologia e recomendações estratégicas.
+- [`notebooks/YanPimentelCotta_RM562836_fase6_cap1.ipynb`](notebooks/YanPimentelCotta_RM562836_fase6_cap1.ipynb): notebook Colab com pipeline end-to-end.
 - `assets/`: logotipos e materiais visuais de apoio.
 
 ## 🔧 Como executar o código
