@@ -1,4 +1,4 @@
-# FIAP - Faculdade de Informática e Administração Paulista 
+# FIAP - Faculdade de Informática e Administração Paulista
 
 <p align="center">
 <a href= "https://www.fiap.com.br/"><img src="assets/logo-fiap.png" alt="FIAP - Faculdade de Informática e Admnistração Paulista" border="0" width=40% height=40%></a>
@@ -33,9 +33,10 @@ FarmTech Vision Lab
 ## 📜 Descrição
 
 - Prova de conceito de visão computacional para a FarmTech Solutions utilizando YOLOv5 para detectar `banana` e `fork`.
-- A solução cobre coleta, rotulagem, treinamento, avaliação, inferência e documentação executiva com foco em decisões de negócio.
-- Dois experimentos (30 vs 60 épocas) demonstram o impacto do tempo de treinamento nas métricas de mAP e na estabilidade do modelo.
-- Discussão aprofundada sobre limitações de bounding boxes para objetos de geometria complexa e caminhos de evolução para segmentação.
+- Pipeline completo: coleta proprietária, rotulagem no Make Sense AI, treinamento em Google Colab, avaliação quantitativa, validação qualitativa e documentação executiva.
+- Três experimentos controlados (YOLOv5s 30 épocas, YOLOv5s 60 épocas, YOLOv5m 60 épocas) quantificam o trade-off entre acurácia e custo computacional.
+- Gráficos comparativos, tabela executiva e análise textual evidenciam a superioridade do modelo `YOLOv5m` e os impactos de governança de dados e deploy em edge.
+- Discussão aprofundada sobre limitações de bounding boxes para objetos de geometria complexa e roadmap para evoluir o projeto (segmentação, hiperparâmetros, compressão).
 
 - Vídeo explicativo (YouTube não listado): **adicionar link após publicação**
 
@@ -56,8 +57,9 @@ FarmTech Vision Lab
 
 - Abra `notebooks/YanPimentelCotta_RM562836_fase6_cap1.ipynb` no Google Colab.
 - Monte o Google Drive e ajuste os caminhos se necessário (`/content/drive/MyDrive/PBL6_Project_YOLO/`).
-- Execute sequencialmente: clonagem do YOLOv5, instalação de dependências, montagem do dataset, treinamentos (30 e 60 épocas) e inferências.
-- Monitore resultados em `runs/train/Exp_30_Epocas`, `runs/train/Exp_60_Epocas` e `runs/detect/Teste_Final` dentro do ambiente Colab.
+- Execute sequencialmente: clonagem do YOLOv5, instalação de dependências, montagem do dataset, treinamentos (Exp_30_Epocas, Exp_60_Epocas, Exp_60_Epocas_Medium) e inferências.
+- Monitore resultados em `runs/train/Exp_30_Epocas`, `runs/train/Exp_60_Epocas`, `runs/train/Exp_60_Epocas_Medium` e `runs/detect/Teste_Final` dentro do ambiente Colab.
+- Exporte gráficos e tabela comparativa (`comparacao_curvas_aprendizado.png`, `comparativo_final_barras.png`, `comparacao_curvas_de_perda.png`, `tabela_comparativa_final.png`) para o Drive ao final da sessão.
 
 ## 🗃 Histórico de lançamentos
 
