@@ -10,7 +10,7 @@
 
 ### **1.0 Resumo Executivo**
 
-Este documento detalha o ciclo de vida completo do desenvolvimento de um protótipo de detecção de objetos customizado, desde a concepção até a análise final. O objetivo foi validar a viabilidade da arquitetura YOLOv5 para identificar objetos específicos (`banana`, `fork`) em um ambiente controlado. O projeto foi executado com sucesso, resultando em um modelo funcional e, mais crucialmente, gerando insights estratégicos sobre as limitações da metodologia de anotação por `bounding box` para objetos de geometria complexa. O modelo final demonstrou alta performance na detecção de objetos regulares (100% de sucesso em `banana`) e performance insuficiente em objetos irregulares (25% de sucesso em `fork`), validando a hipótese de que uma mudança de paradigma tecnológico (para Segmentação de Instâncias) é necessária para escalar a solução.
+Este documento descreve o desenvolvimento de uma Prova de Conceito (PoC) de visão computacional para a FarmTech Solutions, avaliando a arquitetura YOLOv5 na detecção dos objetos `banana` e `fork`. A jornada englobou coleta proprietária de dados, rotulagem, treinamento, avaliação, inferência e documentação de governança. Foram conduzidos três experimentos controlados — dois com a arquitetura **YOLOv5s** (30 e 60 épocas) e um com a arquitetura **YOLOv5m** (60 épocas). O modelo campeão (`YOLOv5m`) alcançou **mAP@.50 geral de 0.789**, com desempenho praticamente perfeito na classe `banana` (0.995) e avanço significativo na classe `fork` (0.584). O estudo confirmou que arquiteturas mais robustas mitigam a limitação das bounding boxes para objetos de geometria complexa, ao custo de um artefato final maior (42 MB). As conclusões orientam decisões distintas para cenários cloud versus edge e delineiam um roadmap de evolução tecnológica.
 
 ---
 
@@ -21,7 +21,7 @@ Para garantir uma execução profissional, organizada e reprodutível, o projeto
 * **Fase 0: Setup e Fundação do Ambiente:** Configuração do versionamento de código (Git), da estrutura de armazenamento de dados (Google Drive) e do ambiente de desenvolvimento (Colab).
 * **Fase 1: Aquisição e Preparação dos Dados:** Seleção estratégica dos objetos e coleta de um dataset de imagens com variabilidade controlada.
 * **Fase 2: Anotação dos Dados (Labeling):** Processo de rotulação manual das imagens para gerar as "respostas" para o treinamento supervisionado.
-* **Fase 3: Desenvolvimento e Treinamento:** Implementação do código para treinar o modelo YOLOv5, incluindo a condução de múltiplos experimentos para otimização.
+* **Fase 3: Desenvolvimento e Treinamento:** Implementação do pipeline YOLOv5 com três experimentos (YOLOv5s 30 épocas, YOLOv5s 60 épocas, YOLOv5m 60 épocas) para medir o impacto de tempo de treino e complexidade arquitetural.
 * **Fase 4: Análise e Avaliação:** Análise quantitativa e qualitativa dos resultados dos modelos treinados para selecionar o de melhor performance.
 * **Fase 5: Inferência e Validação Final:** Teste do modelo campeão em um conjunto de dados nunca visto para validar sua capacidade de generalização.
 * **Fase 6: Empacotamento e Entrega:** Finalização da documentação, geração dos artefatos (vídeo, README) e submissão do projeto.
@@ -43,9 +43,9 @@ Para garantir uma execução profissional, organizada e reprodutível, o projeto
     * Utilizada a plataforma Make Sense AI para a anotação. As 72 imagens dos conjuntos de treino e validação foram rotuladas.
 
 * **Treinamento e Experimentação:**
-    * Desenvolvido um notebook em Google Colab com uma estrutura de relatório profissional usando células Markdown.
-    * Implementado o pipeline de treinamento do YOLOv5, utilizando transfer learning a partir dos pesos `yolov5s.pt` para acelerar a convergência.
-    * Conduzidos dois experimentos controlados: um com 30 épocas e outro com 60 épocas, para avaliar o impacto da duração do treinamento.
+    * Desenvolvido um notebook em Google Colab com narrativa de relatório e monitoramento visual das métricas.
+    * Implementado o pipeline de treinamento do YOLOv5, utilizando transfer learning a partir dos pesos `yolov5s.pt` e `yolov5m.pt`.
+    * Conduzidos três experimentos controlados: YOLOv5s (30 épocas), YOLOv5s (60 épocas) e YOLOv5m (60 épocas), comparando acurácia, custo computacional e tamanho do modelo.
 
 ---
 
@@ -68,14 +68,18 @@ Para garantir uma execução profissional, organizada e reprodutível, o projeto
 
 ### **5.0 Análise Sênior de Resultados**
 
-A análise comparativa entre os dois modelos treinados revelou que o modelo de **60 épocas** foi superior em todas as métricas, com um aumento de **30.5% no mAP@.50 geral**. A análise de inferência no conjunto de teste expôs uma performance dicotômica: o modelo obteve **100% de sucesso na detecção de `banana`**, mas apenas **25% de sucesso na detecção de `fork`**.
+A evolução de desempenho evidenciou dois pontos principais:
 
-Esta disparidade valida a hipótese de que a anotação por `bounding box` é fundamentalmente inadequada para objetos de geometria complexa. A caixa delimitadora de um garfo possui uma baixa razão sinal-ruído, capturando mais pixels de fundo do que do objeto em si, o que confunde o modelo e impede o aprendizado de características robustas. Este insight, embora demonstre uma limitação do modelo, representa o ganho intelectual mais valioso do projeto.
+1. **Impacto do Tempo de Treinamento:** o salto de 30 para 60 épocas no `YOLOv5s` elevou o mAP@.50 geral de 0.393 para 0.513 (+30,5%), eliminando sinais de underfitting observados no experimento inicial.
+2. **Impacto da Complexidade do Modelo:** a migração para o `YOLOv5m` elevou o mAP@.50 geral para 0.789 (+53,8% sobre o melhor modelo pequeno) e mais que dobrou o desempenho em `fork` (0.262 → 0.584). O custo foi um aumento de ~200% no tamanho do modelo (14 MB → 42 MB), implicando considerações específicas de deploy.
+
+A análise qualitativa em imagens inéditas reforçou a hipótese de que objetos de geometria irregular sofrem com a anotação em bounding boxes. Mesmo com a arquitetura média, ainda há ruído residual, apontando para a necessidade de segmentação de instâncias ou técnicas complementares de enriquecimento de dados para maximizar o resultado.
 
 ---
 
 ### **6.0 Recomendações Estratégicas**
 
-Com base nos resultados, a recomendação estratégica para a evolução deste sistema é dupla:
-1.  **Iteração de Curto Prazo:** Para melhorar o modelo YOLOv5 existente, é recomendado um enriquecimento massivo do dataset e a realização de um ciclo de ajuste de hiperparâmetros.
-2.  **Evolução Estratégica:** Para lidar eficazmente com objetos de geometria complexa, é fortemente recomendada a transição do paradigma de Detecção de Objetos para **Segmentação de Instâncias**. A implementação de arquiteturas como **Mask R-CNN** resolveria a questão da razão sinal-ruído e permitiria uma detecção muito mais precisa e robusta de uma gama maior de objetos.
+1. **Ambientes com recursos amplos (cloud/desktop):** implantar o modelo `YOLOv5m`, que entrega melhor equilíbrio entre acurácia e tempo de inferência.
+2. **Dispositivos embarcados (edge restrito):** manter o `YOLOv5s` como baseline e avaliar compressão (quantização, pruning) para aproximar o desempenho do modelo médio sem inviabilizar o hardware.
+3. **Evolução técnica:** ampliar o dataset, intensificar data augmentation, executar busca de hiperparâmetros e iniciar provas de conceito com segmentação de instâncias (Mask R-CNN, YOLACT) para objetos irregulares.
+4. **Governança e MLOps:** estabelecer controle de versões dos experimentos, monitoramento contínuo de métricas e checklist de qualidade de dados para garantir reproducibilidade a cada ciclo.
