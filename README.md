@@ -39,7 +39,7 @@ FarmTech Vision Lab
 - Discussão aprofundada sobre limitações de bounding boxes para objetos de geometria complexa e roadmap para evoluir o projeto (segmentação, hiperparâmetros, compressão).
 - Documentação integrada: relatório executivo em [`docs/report.md`](docs/report.md) e pipeline completo no notebook [`notebooks/YanPimentelCotta_RM562836_fase6_cap1.ipynb`](notebooks/YanPimentelCotta_RM562836_fase6_cap1.ipynb).
 
-- Vídeo explicativo (YouTube não listado): **adicionar link após publicação**
+- Vídeo explicativo (YouTube não listado): [https://www.youtube.com/watch?v=Z7gbPLNvm-4]
 
 ## 💽 Fontes de dados
 
