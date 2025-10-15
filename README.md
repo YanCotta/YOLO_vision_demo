@@ -40,6 +40,7 @@ FarmTech Vision Lab
 - Documentação integrada: relatório executivo em [`docs/report.md`](docs/report.md) e pipeline completo no notebook [`notebooks/YanPimentelCotta_RM562836_fase6_cap1.ipynb`](notebooks/YanPimentelCotta_RM562836_fase6_cap1.ipynb).
 
 - Vídeo explicativo (YouTube não listado): [https://www.youtube.com/watch?v=Z7gbPLNvm-4]
+- Vídeo entrega 2 (YouTube não listado): [https://youtu.be/O5dR1E_kKFA]
 
 ## 💽 Fontes de dados
 
@@ -65,6 +66,7 @@ FarmTech Vision Lab
 ## 🗃 Histórico de lançamentos
 
 - 2025-10-10: Entrega oficial da POC com documentação completa e comparativo de experimentos.
+- 2025-10-13: Entrega oficial da POC com documentação completa e comparativo da YOLO e CNN.
 
 ## 📋 Licença
 
