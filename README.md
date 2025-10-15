@@ -57,7 +57,7 @@ Este projeto apresenta uma solução completa de visão computacional desenvolvi
   - Tempo de inferência
 - Conclusão: YOLOv5 demonstrou superioridade para tarefas de detecção em tempo real, enquanto a CNN é mais adequada para classificação pura.
 - **Notebook**: [`notebooks/Entrega2_RaphaelDaSilva_RM561452_fase6_cap1.ipynb`](notebooks/Entrega2_RaphaelDaSilva_RM561452_fase6_cap1.ipynb)
-- **Vídeo explicativo**: [https://youtu.be/O5dR1E_kKFA]
+- **Vídeo explicativo**: [https://youtu.be/z1lbYlWnz9I]
 
 ### Ir Além 2: Classificação Avançada com Transfer Learning
 - Pipeline avançado de duas etapas combinando detecção de objetos e classificação com transfer learning.
