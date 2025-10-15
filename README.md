@@ -70,6 +70,7 @@ Este projeto apresenta uma solução completa de visão computacional desenvolvi
 - Análise de trade-offs entre confiabilidade (precisão) e abrangência (recall), com recomendações para diferentes contextos de aplicação.
 - **Notebook**: [`notebooks/ir_alem_opcao_2_fase_6_cap1.ipynb`](notebooks/ir_alem_opcao_2_fase_6_cap1.ipynb)
 - **Documentação adicional**: [`README_IR_ALEM_2.md`](README_IR_ALEM_2.md)
+- **Vídeo explicativo**: [https://www.youtube.com/watch?v=csRnLQyvWsM]
 
 ### Documentação Integrada
 - Relatório executivo detalhado: [`docs/report.md`](docs/report.md)
